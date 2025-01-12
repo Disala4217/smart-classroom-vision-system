@@ -1,0 +1,39 @@
+-- Create the database
+CREATE DATABASE smart_classroom_vision_system;
+
+-- Use the database
+USE smart_classroom_vision_system;
+
+-- Create the student table
+CREATE TABLE student (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL
+);
+
+-- Create the teacher table
+CREATE TABLE teacher (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL
+);
+
+-- Create the class table
+CREATE TABLE class (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    grade INT NOT NULL,
+    subject VARCHAR(30) NOT NULL,
+    datetime TIMESTAMP NOT NULL,
+    teacher_id INT NOT NULL,
+    FOREIGN KEY (teacher_id) REFERENCES teacher(id)
+);
+
+-- Create the attendance table
+CREATE TABLE attendance (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    student_id INT NOT NULL,
+    class_id INT NOT NULL,
+    attendance varchar(10),
+    attended_time TIMESTAMP,
+    engagement_level VARCHAR(50),
+    FOREIGN KEY (student_id) REFERENCES student(id),
+    FOREIGN KEY (class_id) REFERENCES class(id)
+);
