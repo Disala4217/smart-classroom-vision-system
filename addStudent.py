@@ -10,10 +10,10 @@ from PIL import Image, ImageTk
 def connect_db():
     try:
         conn = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="yourpassword",  # Replace with your actual password
-            database="attendance_system"
+            host="sql203.infinityfree.com",
+            user="if0_38095745",
+            password="p4ygP0D0yJipq",  # Replace with your actual password
+            database="if0_38095745_smart_classroom_vision_system"
         )
         return conn
     except mysql.connector.Error as err:
