@@ -45,3 +45,56 @@ def save_student(name, student_id):
             mysql_cursor.close()
         if mysql_conn:
             mysql_conn.close()
+
+def save_class(subject, grade, teacher_id):
+    """Save class details into the database."""
+    # Get database connection
+    mysql_conn = connect_mysql_db()
+    if mysql_conn is None:
+        return
+
+    try:
+        mysql_cursor = mysql_conn.cursor()
+
+        # Parameterized query to prevent SQL injection
+        query = "INSERT INTO `class` (`grade`, `subject`, `datetime`, `teacher_id`) VALUES (%s, %s, NOW(), %s)"
+        values = (grade, subject, teacher_id)
+        mysql_cursor.execute(query, values)
+        mysql_conn.commit()
+        print("Class details inserted successfully.")
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    finally:
+        if mysql_cursor:
+            mysql_cursor.close()
+        if mysql_conn:
+            mysql_conn.close()
+
+
+def register_Teacher(name, Teacher_ID):
+    """Save teacher details into the database."""
+    # Get database connection
+    mysql_conn = connect_mysql_db()
+    if mysql_conn is None:
+        return
+
+    try:
+        mysql_cursor = mysql_conn.cursor()
+
+        # Parameterized query
+        query = "INSERT INTO `teacher` (`id`, `name`) VALUES (%s, %s)"
+        values = (Teacher_ID, name)
+
+        # Execute the query
+        mysql_cursor.execute(query, values)
+        mysql_conn.commit()
+        print("Data inserted successfully.")
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    finally:
+        if mysql_cursor:
+            mysql_cursor.close()
+        if mysql_conn:
+            mysql_conn.close()
