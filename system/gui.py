@@ -38,7 +38,7 @@ def create_gui_addStudent():
         if not name or not student_id:
             messagebox.showerror("Error", "Name and Student ID cannot be empty!")
         else:
-            save_face(name, student_id)
+            save_face(student_id)
             save_student(name,student_id)
 
     register_button = Button(
