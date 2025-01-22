@@ -1,6 +1,6 @@
 import cv2
 import os
-
+from train_model import train
 # Load the pre-trained face detection model
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
 
@@ -36,6 +36,7 @@ def save_face(student_id):
 
     cap.release()
     cv2.destroyAllWindows()
+    train
 
 # Example usage
 

@@ -7,6 +7,7 @@ from utils import save_class
 from ttkbootstrap import Style
 from ttkbootstrap.constants import *
 from tkinter import Tk, Label, Button
+from testmodel import recognize
 
 
 def create_gui_addStudent():
@@ -38,8 +39,15 @@ def create_gui_addStudent():
         if not name or not student_id:
             messagebox.showerror("Error", "Name and Student ID cannot be empty!")
         else:
-            save_face(student_id)
-            save_student(name,student_id)
+            try:
+                save_face(student_id)  # Ensure this function works without issues
+                save_student(name, student_id)  # Ensure this function is properly implemented
+                messagebox.showinfo("Success", f"Student {name} registered successfully!")
+                root.destroy()  # Correct usage of destroy
+            except Exception as e:
+                messagebox.showerror("Error", f"Failed to register student: {e}")
+
+           
 
     register_button = Button(
         root, text="Register Face", font=("Arial", 12),
@@ -49,7 +57,7 @@ def create_gui_addStudent():
 
     exit_button = Button(
         root, text="Exit", font=("Arial", 12),
-        bg="red", fg="white", command=root.quit
+        bg="red", fg="white", command=root.destroy
     )
     exit_button.pack(pady=10)
 
@@ -142,7 +150,7 @@ def create_gui_Mark_Attendence_and_Moniter_ClassRoom():
         """Dynamically add the 'Mark Attendance' button."""
         MarkAttendance = Button(
             root, text="Mark Attendance", font=("Arial", 12),
-            bg="blue", fg="white", command=lambda: messagebox.showinfo("Info", "Mark Attendance clicked!")
+            bg="blue", fg="white", command=recognize
         )
         MarkAttendance.pack(pady=10)
 
